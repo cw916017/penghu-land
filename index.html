@@ -3,36 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>澎湖農變建評估助手 v1.0</title>
+    <title>澎湖農變建試算助手</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { background-color: #f0f4f8; font-family: sans-serif; }
-        .card { background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .status-pass { color: #059669; background: #ecfdf5; border: 1px solid #10b981; }
-        .status-fail { color: #dc2626; background: #fef2f2; border: 1px solid #ef4444; }
-        .input-focus:focus { outline: none; ring: 2px; ring-color: #3b82f6; }
+        body { background-color: #f8fafc; font-family: sans-serif; }
+        .card { background: white; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+        .status-pass { color: #065f46; background: #ecfdf5; border: 1px solid #a7f3d0; }
+        .status-fail { color: #991b1b; background: #fef2f2; border: 1px solid #fecaca; }
     </style>
 </head>
 <body class="p-4 md:p-8">
     <div class="max-w-2xl mx-auto space-y-6">
-        <div class="bg-blue-600 p-6 rounded-3xl text-white shadow-lg">
-            <h1 class="text-2xl font-bold flex items-center gap-2">
-                <i class="fas fa-map-marked-alt"></i> 澎湖農變建評估助手
+        <div class="bg-slate-700 p-6 rounded-2xl text-white shadow-md">
+            <h1 class="text-xl font-bold flex items-center gap-2">
+                <i class="fas fa-calculator"></i> 澎湖農變建試算助手
             </h1>
-            <p class="text-blue-100 text-sm mt-1">專業版房地產開發試算工具</p>
+            <p class="text-slate-300 text-xs mt-1">依據澎湖縣農地變更編定審查要點計算</p>
         </div>
 
         <div class="card p-6">
-            <h2 class="text-lg font-bold mb-4 text-blue-800 border-b pb-2">1. 土地基本資料</h2>
+            <h2 class="text-md font-bold mb-4 text-slate-800 border-b pb-2">土地基本資料</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">土地總坪數 (農地)</label>
-                    <input type="number" id="totalArea" placeholder="例如: 200" oninput="calculate()" class="w-full mt-1 p-3 bg-gray-50 border border-gray-200 rounded-xl input-focus">
+                    <label class="block text-sm font-medium text-gray-600">土地總坪數 (農地)</label>
+                    <input type="number" id="totalArea" placeholder="輸入坪數" oninput="calculate()" class="w-full mt-1 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">使用分區</label>
-                    <select id="zoneType" onchange="calculate()" class="w-full mt-1 p-3 bg-gray-50 border border-gray-200 rounded-xl input-focus">
+                    <label class="block text-sm font-medium text-gray-600">使用分區</label>
+                    <select id="zoneType" onchange="calculate()" class="w-full mt-1 p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400">
                         <option value="general">一般農業區 (農牧用地)</option>
                         <option value="special">特定農業區 (特農)</option>
                         <option value="other">其他 / 都市計畫區內</option>
@@ -42,56 +41,56 @@
         </div>
 
         <div class="card p-6">
-            <h2 class="text-lg font-bold mb-4 text-blue-800 border-b pb-2">2. 申請人資格自檢</h2>
-            <div class="space-y-3">
-                <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer border border-transparent hover:border-gray-100">
-                    <input type="checkbox" id="checkResident" onchange="calculate()" class="w-5 h-5 accent-blue-600">
+            <h2 class="text-md font-bold mb-4 text-slate-800 border-b pb-2">申請人資格確認</h2>
+            <div class="space-y-2">
+                <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <input type="checkbox" id="checkResident" onchange="calculate()" class="w-4 h-4 accent-slate-700">
                     <span class="text-sm text-gray-600">本人(或直系血親)設籍澎湖滿 2 年</span>
                 </label>
-                <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer">
-                    <input type="checkbox" id="checkNoHouse" onchange="calculate()" class="w-5 h-5 accent-blue-600">
+                <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <input type="checkbox" id="checkNoHouse" onchange="calculate()" class="w-4 h-4 accent-slate-700">
                     <span class="text-sm text-gray-600">本人名下於澎湖無住宅或建築用地</span>
                 </label>
-                <label class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer">
-                    <input type="checkbox" id="checkFirstTime" onchange="calculate()" class="w-5 h-5 accent-blue-600">
+                <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <input type="checkbox" id="checkFirstTime" onchange="calculate()" class="w-4 h-4 accent-slate-700">
                     <span class="text-sm text-gray-600">此為一生第一次申請農變建</span>
                 </label>
             </div>
         </div>
 
         <div id="resultBox" class="card p-6 hidden">
-            <h2 class="text-lg font-bold mb-4 text-blue-800 border-b pb-2">3. 評估分析報告</h2>
+            <h2 class="text-md font-bold mb-4 text-slate-800 border-b pb-2">試算結果</h2>
             
-            <div id="statusLight" class="p-4 rounded-2xl mb-6 text-center font-bold">
-                判定讀取中...
+            <div id="statusLight" class="p-3 rounded-xl mb-6 text-center text-sm font-medium">
+                讀取中...
             </div>
 
             <div class="grid grid-cols-2 gap-4 mb-6">
-                <div class="p-4 bg-gray-50 rounded-2xl text-center">
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
                     <span class="text-xs text-gray-500 block">可變更建地上限</span>
-                    <span class="text-xl font-bold text-blue-700" id="constLimit">0 坪</span>
+                    <span class="text-lg font-bold text-slate-700" id="constLimit">0 坪</span>
                 </div>
-                <div class="p-4 bg-gray-50 rounded-2xl text-center">
-                    <span class="text-xs text-gray-500 block">剩餘農地空間</span>
-                    <span class="text-xl font-bold text-blue-700" id="remainFarm">0 坪</span>
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                    <span class="text-xs text-gray-500 block">剩餘農地面積</span>
+                    <span class="text-lg font-bold text-slate-700" id="remainFarm">0 坪</span>
                 </div>
-                <div class="p-4 bg-blue-50 rounded-2xl text-center">
-                    <span class="text-xs text-blue-500 block">最大一樓建坪 (60%)</span>
-                    <span class="text-xl font-bold text-blue-700" id="maxFloor">0 坪</span>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <span class="text-xs text-slate-500 block">最大一樓面積 (60%)</span>
+                    <span class="text-lg font-bold text-slate-700" id="maxFloor">0 坪</span>
                 </div>
-                <div class="p-4 bg-blue-50 rounded-2xl text-center">
-                    <span class="text-xs text-blue-500 block">最大總樓地板 (180%)</span>
-                    <span class="text-xl font-bold text-blue-700" id="maxTotal">0 坪</span>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <span class="text-xs text-slate-500 block">最大總樓地板 (180%)</span>
+                    <span class="text-lg font-bold text-slate-700" id="maxTotal">0 坪</span>
                 </div>
             </div>
 
-            <div class="text-sm space-y-2 text-gray-600 bg-amber-50 p-4 rounded-2xl border border-amber-100">
-                <p class="font-bold text-amber-800"><i class="fas fa-exclamation-triangle"></i> 實務提醒：</p>
+            <div class="text-xs space-y-2 text-gray-500 bg-gray-50 p-4 rounded-xl">
+                <p class="font-bold text-gray-700">注意事項：</p>
                 <ul class="list-disc ml-5 space-y-1">
                     <li>高度限制：最高 3 層樓 (10.5公尺)。</li>
-                    <li>隔離綠帶：邊界需退縮約 1.5 公尺。</li>
-                    <li>五年禁令：領得使照後 5 年內不得移轉。</li>
-                    <li>道路預留：若無臨既成道路，需自留通路。</li>
+                    <li>隔離綠帶：邊界需依規定退縮。</li>
+                    <li>移轉限制：領得使照後 5 年內不得移轉。</li>
+                    <li>臨路條件：需臨接既成道路或自留通路。</li>
                 </ul>
             </div>
         </div>
@@ -108,11 +107,8 @@
             const resultBox = document.getElementById('resultBox');
             if(totalArea > 0) resultBox.classList.remove('hidden');
 
-            // 1. 變更面積邏輯：上限 330 平方公尺 (約 100 坪)
             const constLimit = Math.min(totalArea, 100);
             const remainFarm = totalArea - constLimit;
-
-            // 2. 建坪邏輯 (60/180)
             const maxFloor = (constLimit * 0.6).toFixed(1);
             const maxTotal = (constLimit * 1.8).toFixed(1);
 
@@ -121,16 +117,15 @@
             document.getElementById('maxFloor').innerText = maxFloor + ' 坪';
             document.getElementById('maxTotal').innerText = maxTotal + ' 坪';
 
-            // 3. 綜合判定燈號
             const statusLight = document.getElementById('statusLight');
             let pass = true;
-            let msg = "條件符合：該土地具備農變建潛力";
+            let msg = "初步評估：基本條件符合。";
 
-            if (zoneType === 'special') { pass = false; msg = "警告：特定農業區原則上禁止變更！"; }
-            else if (!isResident || !isNoHouse || !isFirst) { pass = false; msg = "警告：申請人資格尚未完全符合"; }
-            else if (totalArea < 50) { pass = false; msg = "警告：農地面積過小，扣除退縮後效益極低"; }
+            if (zoneType === 'special') { pass = false; msg = "不符合：特定農業區目前原則不開放。"; }
+            else if (!isResident || !isNoHouse || !isFirst) { pass = false; msg = "需注意：申請人身分資格尚未齊全。"; }
+            else if (totalArea < 50) { pass = false; msg = "需注意：農地坪數較小，開發效益有限。"; }
 
-            statusLight.className = `p-4 rounded-2xl mb-6 text-center font-bold ${pass ? 'status-pass' : 'status-fail'}`;
+            statusLight.className = `p-3 rounded-xl mb-6 text-center text-sm font-medium ${pass ? 'status-pass' : 'status-fail'}`;
             statusLight.innerText = msg;
         }
     </script>
